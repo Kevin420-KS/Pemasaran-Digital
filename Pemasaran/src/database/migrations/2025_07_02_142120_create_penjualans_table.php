@@ -1,0 +1,27 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up(): void
+    {
+        Schema::create('penjualans', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama_produk');
+            $table->integer('harga');
+            $table->string('nama_channel');
+            $table->string('jenis_promosi');
+            $table->integer('harga_setelah_promosi');
+            $table->string('nama_kota'); // ✅ Ditambahkan
+            $table->string('provinsi');  // ✅ Ditambahkan
+            $table->timestamps();        // ✅ Dipertahankan
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('penjualans');
+    }
+};
