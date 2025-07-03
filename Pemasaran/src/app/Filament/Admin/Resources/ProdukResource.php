@@ -14,9 +14,18 @@ class ProdukResource extends Resource
 {
     protected static ?string $model = Produk::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
+    protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
     protected static ?string $navigationLabel = 'Produk';
+
+    public static function getModelLabel(): string
+    {
+        return 'Produk';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Produk';
+    }
 
     public static function form(Form $form): Form
     {

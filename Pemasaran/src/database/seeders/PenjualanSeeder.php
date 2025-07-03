@@ -16,7 +16,6 @@ class PenjualanSeeder extends Seeder
             'jenis_promosi' => 'Diskon 10%',
             'harga_setelah_promosi' => 22500,
             'nama_kota' => 'Bekasi',
-            'provinsi' => 'Jawa Barat'
         ]);
 
         Penjualan::create([
@@ -26,7 +25,6 @@ class PenjualanSeeder extends Seeder
             'jenis_promosi' => 'Gratis Ongkir',
             'harga_setelah_promosi' => 25000,
             'nama_kota' => 'Depok',
-            'provinsi' => 'Jawa Barat'
         ]);
 
         Penjualan::create([
@@ -36,7 +34,6 @@ class PenjualanSeeder extends Seeder
             'jenis_promosi' => 'Cashback 20%',
             'harga_setelah_promosi' => 20000,
             'nama_kota' => 'Bogor',
-            'provinsi' => 'Jawa Barat'
         ]);
 
         Penjualan::create([
@@ -46,7 +43,6 @@ class PenjualanSeeder extends Seeder
             'jenis_promosi' => 'Diskon Member (20%)',
             'harga_setelah_promosi' => 20000,
             'nama_kota' => 'Depok',
-            'provinsi' => 'Jawa Barat'
         ]);
 
         Penjualan::create([
@@ -56,7 +52,6 @@ class PenjualanSeeder extends Seeder
             'jenis_promosi' => 'Bundle Paket Hemat (15%)',
             'harga_setelah_promosi' => 21250,
             'nama_kota' => 'Tangerang',
-            'provinsi' => 'Banten'
         ]);
     }
 }

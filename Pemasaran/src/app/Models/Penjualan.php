@@ -15,8 +15,7 @@ class Penjualan extends Model
         'nama_channel',
         'jenis_promosi',
         'harga_setelah_promosi',
-        'nama_kota',
-        'provinsi'
+        'nama_kota'
     ];
 
     protected $casts = [

@@ -14,9 +14,18 @@ class PenjualanResource extends Resource
 {
     protected static ?string $model = Penjualan::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
+    protected static ?string $navigationIcon = 'heroicon-o-building-storefront';
     protected static ?string $navigationLabel = 'Penjualan';
+
+    public static function getModelLabel(): string
+    {
+        return 'Penjualan';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Penjualan';
+    }
 
     public static function form(Form $form): Form
     {
@@ -28,7 +37,6 @@ class PenjualanResource extends Resource
                 Forms\Components\TextInput::make('jenis_promosi')->required(),
                 Forms\Components\TextInput::make('harga_setelah_promosi')->numeric()->required(),
                 Forms\Components\TextInput::make('nama_kota')->required(),
-                Forms\Components\TextInput::make('provinsi')->required(),
             ]);
     }
 
@@ -42,7 +50,6 @@ class PenjualanResource extends Resource
                 Tables\Columns\TextColumn::make('jenis_promosi')->label('Jenis Promosi'),
                 Tables\Columns\TextColumn::make('harga_setelah_promosi')->money('IDR', true)->label('Harga Promo'),
                 Tables\Columns\TextColumn::make('nama_kota')->label('Kota'),
-                Tables\Columns\TextColumn::make('provinsi')->label('Provinsi'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

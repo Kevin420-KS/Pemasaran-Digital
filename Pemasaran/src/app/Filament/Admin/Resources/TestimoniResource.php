@@ -14,9 +14,18 @@ class TestimoniResource extends Resource
 {
     protected static ?string $model = Testimoni::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
+    protected static ?string $navigationIcon = 'heroicon-o-chart-bar';
     protected static ?string $navigationLabel = 'Testimoni';
+
+    public static function getModelLabel(): string
+    {
+        return 'Testimoni';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Testimoni';
+    }
 
     public static function form(Form $form): Form
     {

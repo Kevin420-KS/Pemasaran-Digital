@@ -14,9 +14,18 @@ class ChannelResource extends Resource
 {
     protected static ?string $model = Channel::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
+    protected static ?string $navigationIcon = 'heroicon-o-device-phone-mobile';
     protected static ?string $navigationLabel = 'Channel';
+
+    public static function getModelLabel(): string
+    {
+        return 'Channel';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Channel';
+    }
 
     public static function form(Form $form): Form
     {

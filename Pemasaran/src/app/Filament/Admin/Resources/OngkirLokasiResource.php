@@ -14,9 +14,18 @@ class OngkirLokasiResource extends Resource
 {
     protected static ?string $model = OngkirLokasi::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
+    protected static ?string $navigationIcon = 'heroicon-o-map-pin';
     protected static ?string $navigationLabel = 'Ongkir & Lokasi';
+
+    public static function getModelLabel(): string
+    {
+        return 'Ongkir & Lokasi';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Ongkir & Lokasi';
+    }
 
     public static function form(Form $form): Form
     {

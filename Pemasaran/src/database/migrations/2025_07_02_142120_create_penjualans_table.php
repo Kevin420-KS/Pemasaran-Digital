@@ -14,9 +14,8 @@ return new class extends Migration {
             $table->string('nama_channel');
             $table->string('jenis_promosi');
             $table->integer('harga_setelah_promosi');
-            $table->string('nama_kota'); // ✅ Ditambahkan
-            $table->string('provinsi');  // ✅ Ditambahkan
-            $table->timestamps();        // ✅ Dipertahankan
+            $table->string('nama_kota');
+            $table->timestamps();
         });
     }
 
