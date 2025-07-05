@@ -9,5 +9,5 @@ class Testimoni extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['rating', 'nama_produk', 'komentar'];
+    protected $fillable = ['rating', 'nama_produk', 'nama_kota', 'komentar'];
 }

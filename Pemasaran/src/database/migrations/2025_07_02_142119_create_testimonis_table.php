@@ -9,8 +9,9 @@ return new class extends Migration {
     {
         Schema::create('testimonis', function (Blueprint $table) {
             $table->id();
-            $table->string('rating'); // Diubah dari tinyInteger jadi string
-            $table->string('nama_produk'); // Ditambahkan
+            $table->string('rating'); // Bisa diganti ke float kalau perlu validasi lebih presisi
+            $table->string('nama_produk');
+            $table->string('nama_kota'); // Ditambahkan untuk mendukung tabel seperti gambar
             $table->text('komentar');
             $table->timestamps();
         });

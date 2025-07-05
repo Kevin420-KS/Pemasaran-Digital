@@ -31,9 +31,24 @@ class TestimoniResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('rating')->required(),
-                Forms\Components\TextInput::make('nama_produk')->required(),
-                Forms\Components\Textarea::make('komentar')->required(),
+                Forms\Components\TextInput::make('rating')
+                    ->numeric()
+                    ->minValue(1)
+                    ->maxValue(10)
+                    ->required()
+                    ->label('Rating (1–10 saja, tanpa /10)'),
+
+                Forms\Components\TextInput::make('nama_produk')
+                    ->required()
+                    ->label('Nama Produk'),
+
+                Forms\Components\TextInput::make('nama_kota')
+                    ->required()
+                    ->label('Nama Kota'),
+
+                Forms\Components\Textarea::make('komentar')
+                    ->required()
+                    ->label('Komentar'),
             ]);
     }
 
@@ -41,9 +56,23 @@ class TestimoniResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('rating'),
-                Tables\Columns\TextColumn::make('nama_produk'),
-                Tables\Columns\TextColumn::make('komentar')->limit(50),
+                Tables\Columns\TextColumn::make('rating')
+                    ->label('Rating')
+                    ->formatStateUsing(fn ($state) => "{$state}/10")
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('nama_produk')
+                    ->label('Nama Produk')
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('nama_kota')
+                    ->label('Nama Kota')
+                    ->sortable()
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('komentar')
+                    ->label('Komentar')
+                    ->limit(50),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
