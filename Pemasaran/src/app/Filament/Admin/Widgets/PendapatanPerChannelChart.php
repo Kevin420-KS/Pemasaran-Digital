@@ -5,12 +5,14 @@ namespace App\Filament\Admin\Widgets;
 use App\Models\Penjualan;
 use Filament\Widgets\PieChartWidget;
 
+// Widget ini menampilkan pie chart dari total pendapatan tiap channel promosi
 class PendapatanPerChannelChart extends PieChartWidget
 {
     protected static ?string $heading = 'Dampak Pendapatan Makanan dari Pemasaran Digital';
 
     protected function getData(): array
     {
+        // Ambil data total pendapatan berdasarkan channel dari tabel penjualan
         $data = Penjualan::selectRaw('nama_channel, SUM(harga_setelah_promosi) as total_pendapatan')
             ->groupBy('nama_channel')
             ->pluck('total_pendapatan', 'nama_channel')
@@ -27,9 +29,9 @@ class PendapatanPerChannelChart extends PieChartWidget
         ];
     }
 
+    // Fungsi untuk membuat warna unik per channel di chart
     protected function generateColors(int $count): array
     {
-        // Contoh warna berbeda untuk tiap channel
         $palette = [
             '#3b82f6', // biru
             '#10b981', // hijau

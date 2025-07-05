@@ -10,36 +10,39 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
+// Resource ini mengatur tampilan form dan tabel data penjualan di panel admin
 class PenjualanResource extends Resource
 {
-    protected static ?string $model = Penjualan::class;
+    protected static ?string $model = Penjualan::class; // Menghubungkan resource ke model Penjualan
 
-    protected static ?string $navigationIcon = 'heroicon-o-building-storefront';
-    protected static ?string $navigationLabel = 'Penjualan';
+    protected static ?string $navigationIcon = 'heroicon-o-building-storefront'; // Ikon menu di sidebar
+    protected static ?string $navigationLabel = 'Penjualan'; // Label menu
 
     public static function getModelLabel(): string
     {
-        return 'Penjualan';
+        return 'Penjualan'; // Label tunggal entitas
     }
 
     public static function getPluralModelLabel(): string
     {
-        return 'Penjualan';
+        return 'Penjualan'; // Label jamak entitas
     }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama_produk')
-                    ->required(),
+                // Input nama produk
+                Forms\Components\TextInput::make('nama_produk')->required(),
 
+                // Input harga awal produk, lalu hitung harga promo otomatis
                 Forms\Components\TextInput::make('harga')
                     ->numeric()
                     ->required()
                     ->reactive()
                     ->afterStateUpdated(fn ($state, callable $set, callable $get) => self::hitungPromo($set, $get)),
 
+                // Pilih jenis promosi, lalu hitung diskonnya otomatis
                 Forms\Components\Select::make('jenis_promosi')
                     ->options([
                         'Diskon 10%' => 'Diskon 10%',
@@ -52,14 +55,16 @@ class PenjualanResource extends Resource
                     ->reactive()
                     ->afterStateUpdated(fn ($state, callable $set, callable $get) => self::hitungPromo($set, $get)),
 
+                // Field hasil perhitungan harga setelah promosi (otomatis, tidak bisa diubah manual)
                 Forms\Components\TextInput::make('harga_setelah_promosi')
                     ->numeric()
                     ->required()
                     ->disabled(),
 
-                Forms\Components\TextInput::make('nama_channel')
-                    ->required(),
+                // Nama channel promosi
+                Forms\Components\TextInput::make('nama_channel')->required(),
 
+                // Kota tujuan pembelian
                 Forms\Components\Select::make('nama_kota')
                     ->options([
                         'Jakarta' => 'Jakarta',
@@ -73,6 +78,7 @@ class PenjualanResource extends Resource
             ]);
     }
 
+    // Fungsi untuk menghitung harga promo berdasarkan jenis promosi
     public static function hitungPromo(callable $set, callable $get): void
     {
         $harga = $get('harga');
@@ -83,6 +89,7 @@ class PenjualanResource extends Resource
             return;
         }
 
+        // Tentukan diskon berdasarkan jenis promosi
         $diskon = match ($promo) {
             'Diskon 10%' => 0.10,
             'Cashback 20%' => 0.20,
@@ -91,6 +98,7 @@ class PenjualanResource extends Resource
             default => 0.00,
         };
 
+        // Hitung harga setelah diskon
         $hargaPromo = $harga - ($harga * $diskon);
         $set('harga_setelah_promosi', (int) $hargaPromo);
     }
@@ -99,43 +107,27 @@ class PenjualanResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nama_produk')
-                    ->label('Produk')
-                    ->searchable(),
-
-                Tables\Columns\TextColumn::make('harga')
-                    ->money('IDR', true)
-                    ->label('Harga Awal'),
-
-                Tables\Columns\TextColumn::make('nama_channel')
-                    ->label('Channel')
-                    ->searchable(),
-
-                Tables\Columns\TextColumn::make('jenis_promosi')
-                    ->label('Jenis Promosi')
-                    ->searchable(),
-
-                Tables\Columns\TextColumn::make('harga_setelah_promosi')
-                    ->money('IDR', true)
-                    ->label('Harga Promo'),
-
-                Tables\Columns\TextColumn::make('nama_kota')
-                    ->label('Kota')
-                    ->searchable(),
+                // Kolom untuk ditampilkan di tabel admin
+                Tables\Columns\TextColumn::make('nama_produk')->label('Produk')->searchable(),
+                Tables\Columns\TextColumn::make('harga')->money('IDR', true)->label('Harga Awal'),
+                Tables\Columns\TextColumn::make('nama_channel')->label('Channel')->searchable(),
+                Tables\Columns\TextColumn::make('jenis_promosi')->label('Jenis Promosi')->searchable(),
+                Tables\Columns\TextColumn::make('harga_setelah_promosi')->money('IDR', true)->label('Harga Promo'),
+                Tables\Columns\TextColumn::make('nama_kota')->label('Kota')->searchable(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make(), // Aksi edit
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make(), // Aksi hapus massal
                 ]),
             ]);
     }
 
     public static function getRelations(): array
     {
-        return [];
+        return []; // Belum ada relasi ke model lain
     }
 
     public static function getPages(): array

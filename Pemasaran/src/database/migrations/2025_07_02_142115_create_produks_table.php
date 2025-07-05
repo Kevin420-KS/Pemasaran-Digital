@@ -1,5 +1,7 @@
 <?php
 
+// Migration untuk membuat struktur tabel 'produks'
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,7 +14,7 @@ return new class extends Migration {
             $table->string('nama_produk');
             $table->string('kategori');
             $table->integer('harga');
-            $table->timestamps();
+            $table->timestamps(); // Digunakan oleh default meskipun model tidak memakai timestamps
         });
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+// Resource Produk untuk panel admin Filament, menangani input & tampilan data produk
+
 namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\ProdukResource\Pages;
@@ -12,8 +14,10 @@ use Filament\Tables\Table;
 
 class ProdukResource extends Resource
 {
+    // Menghubungkan resource ini ke model Produk
     protected static ?string $model = Produk::class;
 
+    // Ikon dan label navigasi di sidebar admin
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
     protected static ?string $navigationLabel = 'Produk';
 
@@ -27,6 +31,7 @@ class ProdukResource extends Resource
         return 'Produk';
     }
 
+    // Menentukan form input untuk tambah/edit produk
     public static function form(Form $form): Form
     {
         return $form
@@ -41,6 +46,7 @@ class ProdukResource extends Resource
             ]);
     }
 
+    // Menampilkan tabel data produk di halaman utama resource
     public static function table(Table $table): Table
     {
         return $table
@@ -59,11 +65,13 @@ class ProdukResource extends Resource
             ]);
     }
 
+    // Belum memiliki relasi ke resource lain
     public static function getRelations(): array
     {
         return [];
     }
 
+    // Routing halaman CRUD dalam resource Produk
     public static function getPages(): array
     {
         return [

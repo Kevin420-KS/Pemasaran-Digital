@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+// Model ini merepresentasikan tabel 'penjualans' dan menyimpan informasi penjualan produk
 class Penjualan extends Model
 {
     use HasFactory;
@@ -18,6 +19,7 @@ class Penjualan extends Model
         'nama_kota'
     ];
 
+    // Casting nilai angka ke integer
     protected $casts = [
         'harga' => 'integer',
         'harga_setelah_promosi' => 'integer',

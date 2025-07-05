@@ -5,10 +5,12 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\OngkirLokasi;
 
+// Seeder ini mengisi tabel ongkir_lokasis dengan data ongkir untuk beberapa kota
 class OngkirLokasiSeeder extends Seeder
 {
     public function run(): void
     {
+        // Setiap baris mewakili satu kota dan biayanya
         OngkirLokasi::create([
             'nama_kota' => 'Jakarta',
             'provinsi' => 'DKI Jakarta',

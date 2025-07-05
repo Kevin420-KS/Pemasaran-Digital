@@ -5,10 +5,12 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Channel;
 
+// Seeder ini mengisi tabel channels dengan data awal
 class ChannelSeeder extends Seeder
 {
     public function run(): void
     {
+        // Contoh data channel dengan jenis promosi yang berbeda-beda
         Channel::create([
             'nama_channel' => 'Instagram',
             'jenis_promosi' => 'Diskon 10%'

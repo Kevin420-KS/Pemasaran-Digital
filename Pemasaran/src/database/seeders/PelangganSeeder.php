@@ -5,10 +5,12 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Pelanggan;
 
+// Seeder ini mengisi data awal ke tabel 'pelanggans'
 class PelangganSeeder extends Seeder
 {
     public function run(): void
     {
+        // Contoh data pelanggan dengan berbagai kategori dan gender
         Pelanggan::create([
             'nama_pelanggan' => 'Andi Pratama',
             'kategori' => 'Mahasiswa',

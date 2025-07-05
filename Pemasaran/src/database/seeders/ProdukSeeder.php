@@ -9,6 +9,7 @@ class ProdukSeeder extends Seeder
 {
     public function run(): void
     {
+        // Produk kategori Makanan Berat
         Produk::create([
             'nama_produk' => 'Nasi Goreng Spesial',
             'kategori' => 'Makanan Berat',
@@ -63,6 +64,7 @@ class ProdukSeeder extends Seeder
             'harga' => 21000
         ]);
 
+        // Produk kategori Paket Hemat (biasanya gabungan menu + minuman)
         Produk::create([
             'nama_produk' => 'Paket Ayam Geprek + Teh',
             'kategori' => 'Paket Hemat',
