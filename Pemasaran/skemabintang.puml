@@ -1,0 +1,61 @@
+@startuml
+!define primaryKey(x) <b><color:DarkGreen>x</color></b>
+!define foreignKey(x) <i><color:DarkBlue>x</color></i>
+
+entity fakta_penjualan {
+    primaryKey(id): INT
+    foreignKey(id_produk): INT
+    foreignKey(id_pelanggan): INT
+    foreignKey(id_channel): INT
+    foreignKey(id_lokasi): INT
+    foreignKey(id_waktu): INT
+    jumlah: INT
+    total_harga: INT
+    harga_setelah_diskon: INT
+}
+
+entity dim_produk {
+    primaryKey(id): INT
+    nama_produk: VARCHAR
+    kategori: VARCHAR
+    harga: INT
+}
+
+entity dim_pelanggan {
+    primaryKey(id): INT
+    nama_pelanggan: VARCHAR
+    kategori: VARCHAR
+    gender: VARCHAR
+    umur: INT
+    email: VARCHAR
+}
+
+entity dim_channel {
+    primaryKey(id): INT
+    nama_channel: VARCHAR
+    jenis_promosi: VARCHAR
+}
+
+entity dim_lokasi {
+    primaryKey(id): INT
+    nama_kota: VARCHAR
+    provinsi: VARCHAR
+    ongkir: INT
+}
+
+entity dim_waktu {
+    primaryKey(id): INT
+    tanggal: DATE
+    hari: VARCHAR
+    bulan: VARCHAR
+    tahun: INT
+    kuartal: VARCHAR
+}
+
+' RELASI FAKTA KE DIMENSI
+fakta_penjualan }o--|| dim_produk : produk
+fakta_penjualan }o--|| dim_pelanggan : pelanggan
+fakta_penjualan }o--|| dim_channel : channel
+fakta_penjualan }o--|| dim_lokasi : lokasi
+fakta_penjualan }o--|| dim_waktu : waktu
+@enduml
